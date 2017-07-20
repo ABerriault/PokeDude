@@ -14,6 +14,7 @@ public class Player extends Sprite {
   // Constructor
   Player(int x, int y, PImage img) {
     super(x, y, img);
+    super.health = 500;
 
     // Set Defense
     setDefense(5);

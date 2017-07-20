@@ -12,10 +12,10 @@
  *
  *
  ***********************************************************************/
+int numOfPokemon = 4;
 Sprite player;
 Sprite enemy;
 Sprite[] pokemon;
-int numOfPokemon = 2;
 
 static final int START = -1;
 static final int GAME = 0;
@@ -46,8 +46,10 @@ void setup() {
 
   // Set up the all the PokeDudes!
   pokemon = new Sprite[numOfPokemon];
-  pokemon[0] = new Pikachu(400, 300, loadImage("Sprites/Pikachu.png"));
-  pokemon[1] = new Pikachu(200, 100, loadImage("Sprites/Pokemon0.png"));
+  pokemon[0] = new Pikachu(int(random(500)), int(random(500)), loadImage("Sprites/Pikachu.png"));
+  pokemon[1] = new Alien(int(random(500)), int(random(500)), loadImage("Sprites/Alien.png"));
+  pokemon[2] = new Kat(int(random(500)), int(random(500)), loadImage("Sprites/Kat.png"));
+  pokemon[3] = new Zapdos(int(random(500)), int(random(500)), loadImage("Sprites/Zapdos.png"));
 }
 
 
@@ -65,12 +67,17 @@ void draw() {
 
   if (STATE == START) {
     textSize(64);
-    textAlign(CENTER, CENTER);
-    text("PokeDude!", 0, 0, width, height);
+    textAlign(CENTER, TOP);
+    text("PokeDude!", 0, 200, width, height);
     textSize(32);
-    text("Press the Spacebar to begin.", 0, 100, width, height);
+    text("Press the Spacebar to begin.", 0, 300, width, height);
   } else if (STATE == GAME) {
+    textSize(24);
+    fill(240, 240, 0);
+    textAlign(RIGHT, TOP);
+    text("PokéDude", 5, 5, width-10, height);
     textSize(16);
+    fill(255);
     textAlign(LEFT, TOP);
     text("XP: " + experience, 5, 5, width, height);
     player.game();
@@ -237,7 +244,7 @@ Sprite getPokemon() {
 }
 
 
-void displayWarnings() {
+void displayWarnings() { 
   textAlign(CENTER, BOTTOM);
   text(warningMessage, 0, 0, width, height-20);
   if (timer()) {
