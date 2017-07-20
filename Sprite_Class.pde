@@ -1,73 +1,78 @@
-// Sprite Class
-// CodeMakers Advanced
-// YOUR NAME
+// Filename: Sprite_Class
+// Camp: Venture Codemakers Advanced
+// Date: Summer 2017
+// Camper Name: 
 
-public class Sprite {
-  int x = 0;
-  int y = 0;
+abstract class Sprite {
+  int x, y, xSpeed, ySpeed = 0;
+  int health, attack, defense;
   PImage img;
-  int health;
-  int attack;
-  int defense;
-  int speed;
 
   // This is the constructor. It creates a new Sprite.
-  Sprite(int startX, int startY, PImage startPic, int startHealth) {
+  Sprite(int startX, int startY, PImage startPic) {
     x = startX;
     y = startY;
     img = startPic;
-    health = startHealth;
+    health = 100;
     attack = 0;
     defense = 0;
-    speed = 1;
   }
 
-  // This will draw the Sprite.
-  public void draw() {
+
+  // Actions when the Sprite is in the game mode.
+  public void game() {
+    x += xSpeed;
+    y += ySpeed;
+    image(img, x, y, 64, 64);
+  }
+
+
+  // Actions when Sprite is in a battle.
+  public void battle() {
     image(img, x, y, 128, 128);
-    text("Health: "+ health, x, y+200);
-    text("Defense: "+ defense, x, y+220);
-    text("Attack: "+ attack, x, y+240);
-    text("Speed: "+ speed, x, y+260);
+    drawStats();
   }
 
-  // Move Left
+
+
+  /* Movement functions.
+   * Only run while in game mode.
+   * Move Left
+   */
   public void moveLeft() {
-    x = x - speed;
+    xSpeed = -1;
   }
-
-  // Move Right
   public void moveRight() {
-    x = x + speed;
+    xSpeed = 1;
   }
-
-  // Move Up
   public void moveUp() {
-    y = y - speed;
+    ySpeed = -1;
   }
-
-  // Move Down
   public void moveDown() {
-    y = y + speed;
+    ySpeed = 1;
+  }
+  public void stop() {
+    xSpeed = 0;
+    ySpeed = 0;
   }
 
-  // Get and Set the health.
+
+
+  /* Get and Set Functions
+   * Get/Set health, attack, defense
+   */
   public int getHealth() {
     return health;
   } 
   public void setHealth(int change) {
     health += change;
   }
-
-  // Get and Set the attack.
   public int getAttack() {
     return attack;
   } 
   public void setAttack(int change) {
     attack += change;
   }
-
-  // Get and Set the attack.
   public int getDefense() {
     return defense;
   } 
@@ -75,11 +80,18 @@ public class Sprite {
     defense += change;
   }
 
-  // Get and Set the attack.
-  public int getSpeed() {
-    return speed;
-  } 
-  public void setSpeed(int change) {
-    speed += change;
+
+
+  // Draws the stats to the screen below the player.
+  public void drawStats() {
+    textSize(16);
+    textAlign(LEFT, CENTER);
+    text("Health: "+ health, x, y+200);
+    text("Defense: "+ defense, x, y+220);
+    text("Attack: "+ attack, x, y+240);
   }
+  
+  abstract int attack1();
+  abstract int attack2();
+  abstract void dodge();
 }
