@@ -23,8 +23,6 @@ public class Player extends Sprite {
 
   // Attack 1
   int attack1() {
-    super.x += 200;
-    //super.x -= 25;
     return 6;
   }
 

@@ -155,12 +155,14 @@ void keyPressed() {
       int eA = enemy.attack1();
       enemy.setHealth(-pA);
       player.setHealth(-eA);
+      warningMessage = "Player takes " + eA +" damage!";
     } else if (key == '2') {
       // Attack 2
       int pA = player.attack2();
       int eA = enemy.attack2();
       enemy.setHealth(-pA);
       player.setHealth(-eA);
+      warningMessage = "Player takes " + eA +" damage!";
     } else if (key == 'Q' || key == 'q') {
       STATE = OVER;
     }

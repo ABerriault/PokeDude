@@ -39,18 +39,15 @@ public class Pikachu extends Sprite {
 
   // Attack 1
   int attack1() {
-    print("Pikaaaaa Attack 1 worked!");
     return 2;
   }
 
   // Attack 2
   int attack2() {
-    print("Pikaaaaa Attack 2 worked!");
     return 5;
   }
 
   // Dodge
   void dodge() {
-    print(" Pikaaaaa Dodge worked!");
   }
 }
