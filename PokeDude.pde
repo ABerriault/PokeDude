@@ -26,7 +26,6 @@ int STATE = START;
 int experience;
 
 
-
 /************************************************************************
  *                         SETUP METHOD
  *  
@@ -43,10 +42,10 @@ void setup() {
   // Set up the player.
   player = new Player (25, 300, loadImage("Sprites/Player.png"));
 
-  // Set up the pokemon.
+  // Set up the all the PokeDudes!
   pokemon = new Sprite[numOfPokemon];
   pokemon[0] = new Pikachu(400, 300, loadImage("Sprites/Pikachu.png"));
-  pokemon[1] = new Pikachu(200, 300, loadImage("Sprites/Pokemon0.png"));
+  pokemon[1] = new Pikachu(200, 100, loadImage("Sprites/Pokemon0.png"));
 }
 
 
@@ -81,6 +80,7 @@ void draw() {
       experience += 30;
       STATE = GAME;
       player.stop();
+      enemy.setHealth(100);
     }
     player.x = 50;
     player.y = 200;
@@ -146,14 +146,12 @@ void keyPressed() {
       int pA = player.attack1();
       int eA = enemy.attack1();
       enemy.setHealth(-pA);
-      delay(1000);
       player.setHealth(-eA);
     } else if (key == '2') {
       // Attack 2
       int pA = player.attack2();
       int eA = enemy.attack2();
       enemy.setHealth(-pA);
-      delay(1000);
       player.setHealth(-eA);
     } else if (key == 'Q' || key == 'q') {
       STATE = OVER;
@@ -165,6 +163,8 @@ void keyPressed() {
   // The player can choose to restart or quit
   else if (STATE == OVER) {
     if (key == 'R' || key == 'r') {
+      player.setHealth(80);
+      experience = 0;
       STATE = GAME;
     } else if (key == 'Q' || key == 'q') {
       exit();
@@ -212,11 +212,11 @@ Sprite getPokemon() {
   Sprite pokemonAtPlayer = pokemon[0];
   int x = player.x;
   int y = player.y;
-  int buffer = 30;
+  int buffer = 15;
 
   for (int i = 0; i < pokemon.length; i++) {
-    if (x >= pokemon[i].x-buffer && x+64+buffer >= pokemon[i].x+64) {
-      if (y >= pokemon[i].y-buffer && y+64+buffer >= pokemon[i].y+64) {
+    if (x >= pokemon[i].x-buffer && x+64+buffer <= pokemon[i].x+64) {
+      if (y >= pokemon[i].y-buffer && y+64+buffer <= pokemon[i].y+64) {
         pokemonAtPlayer = pokemon[i];
       }
     }

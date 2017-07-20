@@ -3,6 +3,13 @@
 // Date: Summer 2017
 // Camper Name: 
 
+/************************************************************************
+ *                         SPRITE CLASS
+ *  
+ *   Creates the sprites and gives them their basic functionality.
+ *   You do not need to change any code in this file.
+ *
+ ***********************************************************************/
 abstract class Sprite {
   int x, y, xSpeed, ySpeed = 0;
   int health, attack, defense;
@@ -18,7 +25,6 @@ abstract class Sprite {
     defense = 0;
   }
 
-
   // Actions when the Sprite is in the game mode.
   public void game() {
     x += xSpeed;
@@ -26,13 +32,11 @@ abstract class Sprite {
     image(img, x, y, 64, 64);
   }
 
-
   // Actions when Sprite is in a battle.
   public void battle() {
     image(img, x, y, 128, 128);
     drawStats();
   }
-
 
 
   /* Movement functions.
@@ -57,7 +61,6 @@ abstract class Sprite {
   }
 
 
-
   /* Get and Set Functions
    * Get/Set health, attack, defense
    */
@@ -79,7 +82,6 @@ abstract class Sprite {
   public void setDefense(int change) {
     defense += change;
   }
-
 
 
   // Draws the stats to the screen below the player.

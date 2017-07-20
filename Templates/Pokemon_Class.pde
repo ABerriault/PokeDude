@@ -3,8 +3,6 @@
 // Date: Summer 2017
 // Camper Name: 
 
-
-
 /*        Your Tasks!
  *   Change the name of the class to your pokeDude's name
  *   It must start with a capital similar to the current name

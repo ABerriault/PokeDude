@@ -3,8 +3,6 @@
 // Date: Summer 2017
 // Camper Name: 
 
-
-
 /*        Your Tasks!
  *   Change the name of the class to your pokeDude's name
  *   It must start with a capital similar to the current name
@@ -29,9 +27,6 @@
  
  */
 public class Pikachu extends Sprite {
-
-  // Class variables
-  
   // Constructor
   Pikachu(int x, int y, PImage img) {
     super(x, y, img);
