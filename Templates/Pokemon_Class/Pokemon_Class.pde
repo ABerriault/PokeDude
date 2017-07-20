@@ -17,9 +17,9 @@
  *   already been chosen for you! Please do not change it.
  *
  *   Commands available from the SuperClass
- *   getHealth()              returns the health
- *   getHealth()              returns the health
- *   getHealth()              returns the health
+ *   getHealth()              returns the health value
+ *   getDefense()             returns the defense value
+ *   getAttack()              returns the attack value
  *
  *   setHealth(int)           changes the health by int
  *   setDefense(int)          changes the defense by int

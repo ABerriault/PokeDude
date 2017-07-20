@@ -24,6 +24,8 @@ static final int OVER = 2;
 int STATE = START;
 
 int experience;
+String warningMessage = "";
+int time = 0;
 
 
 /************************************************************************
@@ -58,6 +60,8 @@ void setup() {
  ***********************************************************************/
 void draw() {
   background(130, 200, 150);
+  displayWarnings();
+  time++;
 
   if (STATE == START) {
     textSize(64);
@@ -132,7 +136,11 @@ void keyPressed() {
       player.moveRight();
     } else if (key == ' ') {
       enemy = getPokemon();
-      STATE = BATTLE;
+      if (enemy == null) {
+        warningMessage = "No PokeDudes near by";
+      } else {
+        STATE = BATTLE;
+      }
     } else if (key == 'Q' || key == 'q') {
       STATE = OVER;
     }
@@ -209,18 +217,37 @@ void keyReleased() {
  *
  ***********************************************************************/
 Sprite getPokemon() {
-  Sprite pokemonAtPlayer = pokemon[0];
+  player.stop();
+  Sprite pokemonAtPlayer = null;
   int x = player.x;
   int y = player.y;
   int buffer = 15;
 
   for (int i = 0; i < pokemon.length; i++) {
-    if (x >= pokemon[i].x-buffer && x+64+buffer <= pokemon[i].x+64) {
-      if (y >= pokemon[i].y-buffer && y+64+buffer <= pokemon[i].y+64) {
+    if (x+64+buffer > pokemon[i].x && x-buffer < pokemon[i].x+64) {
+      if (y+64+buffer > pokemon[i].y && y-buffer < pokemon[i].y+64) {
         pokemonAtPlayer = pokemon[i];
       }
     }
   }
 
   return pokemonAtPlayer;
+}
+
+
+void displayWarnings() {
+  textAlign(CENTER, BOTTOM);
+  text(warningMessage, 0, 0, width, height-20);
+  if (timer()) {
+    warningMessage = "";
+  }
+}
+
+boolean timer() {
+  if (time < 90) {
+    return false;
+  } else {
+    time = 0;
+    return true;
+  }
 }
